@@ -1,0 +1,16 @@
+<div>
+  <h2>Person List</h2>
+  <ul>
+    <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue">
+        <app-card>
+          <h3>{{ person.name }}</h3>
+          <p>Gender: ({{ person.gender | gender }})</p>
+          <p>Age: {{ person.age }}</p>
+          <button (click)="editPerson(person.id)">Edit</button>
+          <button (click)="deletePerson(person.id)">Delete</button>
+        </app-card>
+      </li>
+    </ul>
+</div>
+<br />
+<button (click)="createPerson()">Add New Person</button>
