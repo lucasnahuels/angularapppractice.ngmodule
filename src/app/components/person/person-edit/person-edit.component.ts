@@ -32,7 +32,7 @@ export class PersonEdit {
     //   this.personService.updatePerson(this.person);
     //   this.router.navigate(['/list']);
       this.personService.updatePerson(this.person).subscribe(() => {
-          this.router.navigate(['/persons']);
+          this.router.navigate(['/list']);
       });
   }
 
