@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { GenderPipe } from './pipes/gender.pipe';
 import { CardComponent } from './components/card/card.component';
 import { HoverHighlightDirective } from './directives/hover-highlight.directive';
+import { PersonDetail } from './components/person/person-detail/person-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HoverHighlightDirective } from './directives/hover-highlight.directive'
     PersonList,
     PersonEdit,
     PersonDelete,
+    PersonDetail,
     GenderPipe,
     CardComponent,
     HoverHighlightDirective

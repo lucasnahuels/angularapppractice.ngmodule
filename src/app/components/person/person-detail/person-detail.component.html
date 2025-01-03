@@ -1,0 +1,14 @@
+<div *ngIf="person">
+  <h3>Person Details</h3>
+  <p>Name: {{ person.name }}</p>
+  <p>Gender: {{ person.gender }}</p>
+  <p>Age: {{ person.age }}</p>
+  <div>
+    <h4>Skills</h4>
+    <ul>
+      <li *ngFor="let skill of person.skills">
+        {{ skill.name }}: {{ skill.hasSkill ? 'Yes' : 'No' }}
+      </li>
+    </ul>
+  </div>
+</div>

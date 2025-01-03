@@ -1,16 +1,29 @@
 <div>
   <h2>Person List</h2>
+  <label for="sortCriteria">Sort by:</label>
+  <select id="sortCriteria" [(ngModel)]="sortCriteria" (change)="onSortCriteriaChange()">
+    <option value="name">Name</option>
+    <option value="age">Age</option>
+    <option value="gender">Gender</option>
+  </select>
   <ul>
-    <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue">
+    <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue" (click)="selectPerson(person.id)">
         <app-card>
           <h3>{{ person.name }}</h3>
           <p>Gender: ({{ person.gender | gender }})</p>
           <p>Age: {{ person.age }}</p>
+          <div style="float: right; margin-left: 20px;">
+            <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'white'}">
+              {{ skill.name }}
+            </span>
+          </div>
           <button (click)="editPerson(person.id)">Edit</button>
           <button (click)="deletePerson(person.id)">Delete</button>
         </app-card>
       </li>
     </ul>
+    <br />
+    <app-person-detail [personId]="selectedPersonId"></app-person-detail>
 </div>
 <br />
 <button (click)="createPerson()">Add New Person</button>
