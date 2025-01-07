@@ -1,7 +1,8 @@
-import { Component, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { Person } from '../../../models/person';
 import { PersonService } from '../../../services/person-service';
 import { Router } from '@angular/router';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'app-person-list',
@@ -14,6 +15,8 @@ export class PersonList implements OnChanges{
   persons: Person[] = [];
   sortCriteria: string = 'name'; // Default sort criteria
   selectedPersonId: number = 0;
+  
+  @ViewChild(ModalComponent) modal!: ModalComponent;
   
   constructor(private personService: PersonService, private router: Router) {}
 
@@ -72,5 +75,13 @@ export class PersonList implements OnChanges{
         this.persons.sort((a, b) => a.gender.localeCompare(b.gender));
         break;
     }
+  }
+
+  openModal(): void {
+    this.modal.open();
+  }
+
+  closeModal(): void {
+    this.modal.close();
   }
 }

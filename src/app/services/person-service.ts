@@ -44,7 +44,9 @@ export class PersonService {
   list(): Observable<Person[]> {
     return of(this.persons);
   }
-//   list(): Person[] {
-//     return this.persons;
-//   }
+
+  // //this would be the approach not using observables
+  // list(): Person[] {
+  //   return this.persons;
+  // }
 }

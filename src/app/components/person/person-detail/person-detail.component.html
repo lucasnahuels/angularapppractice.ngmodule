@@ -1,14 +1,22 @@
 <div *ngIf="person">
   <h3>Person Details</h3>
-  <p>Name: {{ person.name }}</p>
-  <p>Gender: {{ person.gender }}</p>
-  <p>Age: {{ person.age }}</p>
-  <div>
-    <h4>Skills</h4>
-    <ul>
-      <li *ngFor="let skill of person.skills">
-        {{ skill.name }}: {{ skill.hasSkill ? 'Yes' : 'No' }}
-      </li>
-    </ul>
-  </div>
+  <li class="header">
+    <div class="card-content">
+      <div class="person-info">
+        <div class="person-column header-column">Name</div>
+        <div class="person-column header-column">Gender</div>
+        <div class="person-column header-column">Age</div>
+        <div class="person-column header-column">Skills</div>
+      </div>
+    </div>
+  </li>
+  <div class="person-info">
+    <div class="person-column">{{ person.name }}</div>
+    <div class="person-column">{{ person.gender | gender }}</div>
+    <div class="person-column">{{ person.age }}</div>
+    <div class="person-column skills-column">
+      <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'red', 'color': 'white'}">
+        {{ skill.name }}&nbsp;
+      </span>
+    </div>
 </div>

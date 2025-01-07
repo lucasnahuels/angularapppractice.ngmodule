@@ -13,6 +13,7 @@ import { GenderPipe } from './pipes/gender.pipe';
 import { CardComponent } from './components/card/card.component';
 import { HoverHighlightDirective } from './directives/hover-highlight.directive';
 import { PersonDetail } from './components/person/person-detail/person-detail.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { PersonDetail } from './components/person/person-detail/person-detail.co
     PersonEdit,
     PersonDelete,
     PersonDetail,
-    GenderPipe,
+    ModalComponent,
     CardComponent,
+    GenderPipe,
     HoverHighlightDirective
   ],
   imports: [

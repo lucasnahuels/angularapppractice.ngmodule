@@ -1,5 +1,5 @@
 <div>
-  <h2>Person List</h2>
+  <h2></h2>
   <button (click)="createPerson()">Add New Person</button>
   <div style="float: right; margin-left: 20px;">
     <label for="sortCriteria">Sort by:</label>
@@ -11,22 +11,47 @@
   </div>
   <br />
   <ul>
+    <li class="header">
+      <app-card>
+        <div class="card-content">
+          <div class="person-info">
+            <div class="person-column">Name</div>
+            <div class="person-column">Gender</div>
+            <div class="person-column">Age</div>
+            <div class="person-column">Skills</div>
+            <div class="person-column">Actions</div>
+          </div>
+        </div>
+      </app-card>
+    </li>
     <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue" (click)="selectPerson(person.id)">
         <app-card>
-          <h3>{{ person.name }}</h3>
-          <p>Gender: ({{ person.gender | gender }})</p>
-          <p>Age: {{ person.age }}</p>
-          <div style="float: right; margin-left: 20px;">
-            <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'red', 'color': 'white'}">
-              {{ skill.name }}
-              <br />
-            </span>
+          <div class="card-content">
+            <div class="person-info">
+              <div class="person-column">{{ person.name }}</div>
+              <div class="person-column">{{ person.gender | gender }}</div>
+              <div class="person-column">{{ person.age }}</div>
+              <div class="person-column">
+                <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'red', 'color': 'white'}">
+                  {{ skill.name }}
+                <br />
+              </span>
+              </div>
+              <div class="person-column">
+                <button (click)="editPerson(person.id)">Edit</button>
+                <button (click)="deletePerson(person.id)">Delete</button>
+              </div>
+            </div>
           </div>
-          <button (click)="editPerson(person.id)">Edit</button>
-          <button (click)="deletePerson(person.id)">Delete</button>
         </app-card>
       </li>
     </ul>
+    <button (click)="openModal()">Open Modal</button>
+    <app-modal>
+      <h3>Modal Content</h3>
+      <p>This is the content of the modal.</p>
+      <button (click)="closeModal()">Close Modal</button>
+    </app-modal>
     <br />
     <app-person-detail [personId]="selectedPersonId"></app-person-detail>
 </div>
