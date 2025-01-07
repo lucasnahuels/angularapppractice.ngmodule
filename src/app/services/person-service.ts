@@ -32,7 +32,7 @@ export class PersonService {
     return of(undefined);
   }
 
-  delete(id: number): boolean {
+  deletePerson(id: number): boolean {
     const index = this.persons.findIndex(person => person.id === id);
     if (index !== -1) {
       this.persons.splice(index, 1);

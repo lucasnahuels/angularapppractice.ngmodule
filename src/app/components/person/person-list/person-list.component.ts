@@ -39,11 +39,13 @@ export class PersonList implements OnChanges{
   }
 
   deletePerson(id: number): void {
-      // this.personService.deletePerson(id).subscribe(() => {
-      //     this.persons = this.persons.filter(person => person.id !== id);
-      // });
-      this.persons = this.persons.filter(person => person.id !== id);
+      this.personService.deletePerson(id);
   }
+
+  // This would be the right approach, but I implemented the ngOnChanges method instead just to learn how to use ngOnChanges
+  // onSortCriteriaChange(): void {
+  //   this.sortPersons(); 
+  // }
 
   onSortCriteriaChange(): void {
     const changes: SimpleChanges = {

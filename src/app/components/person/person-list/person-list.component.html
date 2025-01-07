@@ -1,11 +1,15 @@
 <div>
   <h2>Person List</h2>
-  <label for="sortCriteria">Sort by:</label>
-  <select id="sortCriteria" [(ngModel)]="sortCriteria" (change)="onSortCriteriaChange()">
-    <option value="name">Name</option>
-    <option value="age">Age</option>
-    <option value="gender">Gender</option>
-  </select>
+  <button (click)="createPerson()">Add New Person</button>
+  <div style="float: right; margin-left: 20px;">
+    <label for="sortCriteria">Sort by:</label>
+    <select id="sortCriteria" [(ngModel)]="sortCriteria" (change)="onSortCriteriaChange()">
+      <option value="name">Name</option>
+      <option value="age">Age</option>
+      <option value="gender">Gender</option>
+    </select>
+  </div>
+  <br />
   <ul>
     <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue" (click)="selectPerson(person.id)">
         <app-card>
@@ -13,8 +17,9 @@
           <p>Gender: ({{ person.gender | gender }})</p>
           <p>Age: {{ person.age }}</p>
           <div style="float: right; margin-left: 20px;">
-            <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'white'}">
+            <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'red', 'color': 'white'}">
               {{ skill.name }}
+              <br />
             </span>
           </div>
           <button (click)="editPerson(person.id)">Edit</button>
@@ -25,5 +30,3 @@
     <br />
     <app-person-detail [personId]="selectedPersonId"></app-person-detail>
 </div>
-<br />
-<button (click)="createPerson()">Add New Person</button>
