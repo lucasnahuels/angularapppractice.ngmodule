@@ -14,6 +14,7 @@ import { CardComponent } from './components/card/card.component';
 import { HoverHighlightDirective } from './directives/hover-highlight.directive';
 import { PersonDetail } from './components/person/person-detail/person-detail.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalComponent } from './components/modal/modal.component';
     PersonDetail,
     ModalComponent,
     CardComponent,
+    LoginComponent,
     GenderPipe,
     HoverHighlightDirective
   ],

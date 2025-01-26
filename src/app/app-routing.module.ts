@@ -4,11 +4,13 @@ import { PersonList } from './components/person/person-list/person-list.componen
 import { PersonEdit } from './components/person/person-edit/person-edit.component';
 import { PersonCreate } from './components/person/person-create/person-create.component';
 import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'list', component: PersonList, canActivate: [AuthGuard] },
   { path: 'update/:id', component: PersonEdit, canActivate: [AuthGuard] },
-  { path: 'create', component: PersonCreate, canActivate: [AuthGuard] }
+  { path: 'create', component: PersonCreate, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
