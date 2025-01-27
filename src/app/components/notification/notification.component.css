@@ -1,0 +1,32 @@
+.notification-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  z-index: 1000;
+}
+
+.notification {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification button {
+  background: none;
+  border: none;
+  color: #155724;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.notification button:hover {
+  color: #0b2e13;
+}

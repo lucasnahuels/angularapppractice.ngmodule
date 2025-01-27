@@ -15,6 +15,11 @@ import { HoverHighlightDirective } from './directives/hover-highlight.directive'
 import { PersonDetail } from './components/person/person-detail/person-detail.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './components/login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { notificationReducer } from './notifications/reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +32,17 @@ import { LoginComponent } from './components/login/login.component';
     ModalComponent,
     CardComponent,
     LoginComponent,
+    NotificationComponent,
     GenderPipe,
     HoverHighlightDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ notifications: notificationReducer }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [PersonService],
   bootstrap: [AppComponent]
