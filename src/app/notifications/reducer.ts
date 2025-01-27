@@ -25,3 +25,5 @@ export const notificationReducer = createReducer(
     notifications: state.notifications.filter(notification => notification.id !== id)
   }))
 );
+
+// see https://ngrx.io/guide/store/reducers to understand how reducers, actions and selectors work
