@@ -24,7 +24,7 @@
         </div>
       </app-card>
     </li>
-    <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue" (click)="selectPerson(person.id)">
+    <li *ngFor="let person of persons" appHoverHighlight highlightColor="lightblue" (click)="openPersonDetail(person.id)">
         <app-card>
           <div class="card-content">
             <div class="person-info">
@@ -46,12 +46,12 @@
         </app-card>
       </li>
     </ul>
-    <button (click)="openModal()">Open Modal</button>
+    <!-- <button (click)="openModal()">Open Modal</button>
     <app-modal>
       <h3>Modal Content</h3>
       <p>This is the content of the modal.</p>
       <button (click)="closeModal()">Close Modal</button>
     </app-modal>
     <br />
-    <app-person-detail [personId]="selectedPersonId"></app-person-detail>
+    <app-person-detail [personId]="selectedPersonId"></app-person-detail> -->
 </div>

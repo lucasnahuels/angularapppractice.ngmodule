@@ -3,6 +3,10 @@ import { Person } from '../../../models/person';
 import { PersonService } from '../../../services/person-service';
 import { Router } from '@angular/router';
 import { ModalComponent } from '../../modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { PersonDetail } from '../person-detail/person-detail.component';
+import { Store } from '@ngrx/store';
+import { addNotification } from '../../../notifications/actions';
 
 @Component({
   selector: 'app-person-list',
@@ -18,16 +22,20 @@ export class PersonList implements OnChanges{
   
   @ViewChild(ModalComponent) modal!: ModalComponent;
   
-  constructor(private personService: PersonService, private router: Router) {}
+  constructor(private personService: PersonService, 
+    private router: Router, 
+    private dialog: MatDialog,
+    private store: Store
+  ) {}
 
   ngOnInit() {
       this.getPersons();
       this.onSortCriteriaChange();
   }
 
-  selectPerson(id: number): void {
-    this.selectedPersonId = id;
-  }
+  // selectPerson(id: number): void {
+  //   this.selectedPersonId = id;
+  // }
 
   getPersons(): void {
       this.personService.list().subscribe(persons => this.persons = persons);
@@ -42,7 +50,10 @@ export class PersonList implements OnChanges{
   }
 
   deletePerson(id: number): void {
+      let name : string | undefined;
+      this.personService.getPersonById(id).subscribe(person => name = person?.name || undefined);
       this.personService.deletePerson(id);
+      this.store.dispatch(addNotification({ message: 'Person deleted: ' + name }));  
   }
 
   // This would be the right approach, but I implemented the ngOnChanges method instead just to learn how to use ngOnChanges
@@ -77,11 +88,18 @@ export class PersonList implements OnChanges{
     }
   }
 
-  openModal(): void {
-    this.modal.open();
+  openPersonDetail(personId: number) {
+    this.dialog.open(PersonDetail, {
+      data: { personId },
+      width: '600px'
+    });
   }
+  
+  // openModal(): void {
+  //   this.modal.open();
+  // }
 
-  closeModal(): void {
-    this.modal.close();
-  }
+  // closeModal(): void {
+  //   this.modal.close();
+  // }
 }

@@ -9,7 +9,8 @@ export class PersonService {
   private persons: Person[] = [
     { id: 1, name: 'John Doe', gender: 'Male', age: 30 },
     { id: 2, name: 'Jane Smith', gender: 'Female', age: 25, skills: [{ name: 'JavaScript', hasSkill: true }, { name: 'Angular', hasSkill: true }] },
-    { id: 3, name: 'Alice Johnson', gender: 'Female', age: 28, skills: [{ name: 'JavaScript', hasSkill: false }, { name: 'Angular', hasSkill: true }] }
+    { id: 3, name: 'Alice Johnson', gender: 'Female', age: 28, skills: [{ name: 'JavaScript', hasSkill: false }, { name: 'Angular', hasSkill: true }] },
+    { id: 4, name: 'Sherlock Holmes', gender: 'Male', age: 29, skills: [{ name: 'C#', hasSkill: true }, { name: 'Node.js', hasSkill: true }, { name: 'React', hasSkill: true }] }
   ];
   private nextId: number = 4;
 

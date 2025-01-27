@@ -20,6 +20,7 @@ import { notificationReducer } from './notifications/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NotificationComponent } from './components/notification/notification.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { NotificationComponent } from './components/notification/notification.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatDialogModule, // for ModalComponent
+    //The next three imports are for NgRx notifications
     StoreModule.forRoot({ notifications: notificationReducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25 })

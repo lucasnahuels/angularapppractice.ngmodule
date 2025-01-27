@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Person } from '../../../models/person';
 import { PersonService } from '../../../services/person-service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-person-detail',
@@ -8,19 +9,24 @@ import { PersonService } from '../../../services/person-service';
   styleUrls: ['./person-detail.component.css'],
   standalone: false
 })
-export class PersonDetail implements OnChanges {
-  @Input() personId!: number;
+export class PersonDetail {
   person: Person | undefined;
 
-  constructor(private personService: PersonService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['personId'] && changes['personId'].currentValue) {
-      this.loadPerson(changes['personId'].currentValue);
+  constructor(
+    private personService: PersonService,
+    public dialogRef: MatDialogRef<PersonDetail>,
+    @Inject(MAT_DIALOG_DATA) public data: { personId: number }
+  ) {
+    if (data && data.personId) {
+      this.loadPerson(data.personId);
     }
   }
 
   loadPerson(id: number): void {
     this.personService.getPersonById(id).subscribe(person => this.person = person || undefined);
+  }
+
+  closeModal(): void {
+    this.dialogRef.close();
   }
 }

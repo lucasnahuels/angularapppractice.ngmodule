@@ -8,7 +8,6 @@ import { addNotification } from '../../../notifications/actions';
 @Component({
   selector: 'app-person-create',
   standalone: false,
-  
   templateUrl: './person-create.component.html',
   styleUrl: './person-create.component.css'
 })
