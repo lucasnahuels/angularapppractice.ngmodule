@@ -38,8 +38,8 @@
               </span>
               </div>
               <div class="person-column">
-                <button (click)="editPerson(person.id)">Edit</button>
-                <button (click)="deletePerson(person.id)">Delete</button>
+                <button (click)="editPerson(person.id); $event.stopPropagation()">Edit</button>
+                <button (click)="deletePerson(person.id); $event.stopPropagation()">Delete</button>
               </div>
             </div>
           </div>
