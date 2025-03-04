@@ -16,6 +16,7 @@ import { addNotification } from '../../../notifications/actions';
 export class PersonEdit {
   person: Person;
   private subscription: Subscription = new Subscription();
+  newSkill: string = '';
 
   constructor(private personService: PersonService, private route: ActivatedRoute, private router: Router, private store: Store) {  
       this.person = { id: 0, name: '', gender: '', age: 0 }; // Initialize with default values
@@ -45,5 +46,11 @@ export class PersonEdit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  addSkill(personId: number): void {
+  }
+
+  deleteSkill(personId: number, skillId: number): void {
   }
 }

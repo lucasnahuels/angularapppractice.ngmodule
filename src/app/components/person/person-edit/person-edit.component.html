@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" #personForm="ngForm">
+    <br />
     <div>
       <label for="name">Name:</label>
       <input type="text" id="name" [(ngModel)]="person.name" name="name" required>
@@ -15,5 +16,20 @@
       <label for="age">Age:</label>
       <input type="number" id="age" [(ngModel)]="person.age" name="age" required>
     </div>
+    <br />
+    <h3>Skills</h3>
+    <ul style="padding-left: 0">
+      <li *ngFor="let skill of person.skills" style="display: flex; justify-content: space-between; width: 300px;">
+        <span style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ skill.name }}</span>
+        <button (click)="deleteSkill(person.id, 0)" >
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+    <input [(ngModel)]="newSkill" placeholder="New skill" />
+    <button (click)="addSkill(person.id)">Add Skill</button>
+    <br />
+    <br />
+    <br />
     <button type="submit">Save</button>
   </form>
