@@ -9,12 +9,18 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  
   constructor(private authService: AuthService, private router: Router) {}
 
+  username: string = '';
+  password: string = '';
+
   login() {
-    this.authService.login();
-    this.router.navigate(['/list']);
+    if (this.authService.login(this.username, this.password)) {
+      this.router.navigate(['/list']);
+    } else {
+      alert('Invalid credentials');
+    }
   }
 
   logout() {

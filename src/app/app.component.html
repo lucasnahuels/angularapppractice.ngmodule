@@ -1,6 +1,9 @@
 <div class="header">
   <h1>Person Management</h1>
-  <button *ngIf="authService.checkAuthentication()" (click)="logout()" class="logout-button">Logout</button>
+  <div *ngIf="authService.isAuthenticated()" class="user-info">
+    <span>{{ getUsername() }}</span>
+    <button (click)="logout()" class="logout-button">Logout</button>
+  </div>
 </div>
 <app-notification></app-notification>
 <div>

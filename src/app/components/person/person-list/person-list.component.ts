@@ -29,8 +29,8 @@ export class PersonList implements OnChanges{
   ) {}
 
   ngOnInit() {
-      this.getPersons();
-      this.onSortCriteriaChange();
+    this.getPersons();
+    this.onSortCriteriaChange();
   }
 
   // selectPerson(id: number): void {
@@ -38,7 +38,7 @@ export class PersonList implements OnChanges{
   // }
 
   getPersons(): void {
-      this.personService.list().subscribe(persons => this.persons = persons);
+    this.personService.list().subscribe(persons => this.persons = persons);
   }
 
   createPerson(): void {
@@ -46,14 +46,19 @@ export class PersonList implements OnChanges{
   }
 
   editPerson(id: number): void {
-      this.router.navigate(['/update', id]);
+    this.router.navigate(['/update', id]);
   }
 
   deletePerson(id: number): void {
-      let name : string | undefined;
-      this.personService.getPersonById(id).subscribe(person => name = person?.name || undefined);
-      this.personService.deletePerson(id);
-      this.store.dispatch(addNotification({ message: 'Person deleted: ' + name }));  
+    let name: string | undefined;
+    this.personService.getPersonById(id).subscribe(person => {
+      name = person?.name || undefined;
+    }); 
+    this.personService.deletePerson(id).subscribe(success => {
+      if (success) {
+        this.store.dispatch(addNotification({ message: 'Person deleted: ' + name }));
+      }
+    });
   }
 
   // This would be the right approach, but I implemented the ngOnChanges method instead just to learn how to use ngOnChanges

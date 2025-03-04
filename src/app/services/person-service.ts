@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../models/person';
 import { Observable, of } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class PersonService {
     { id: 4, name: 'Sherlock Holmes', gender: 'Male', age: 29, skills: [{ name: 'C#', hasSkill: true }, { name: 'Node.js', hasSkill: true }, { name: 'React', hasSkill: true }] }
   ];
   private nextId: number = 4;
+
+  constructor(private authService: AuthService) {}
 
   createPerson(person: Person): Observable<Person> {
     person.id = this.nextId++;
@@ -33,13 +36,17 @@ export class PersonService {
     return of(undefined);
   }
 
-  deletePerson(id: number): boolean {
-    const index = this.persons.findIndex(person => person.id === id);
-    if (index !== -1) {
-      this.persons.splice(index, 1);
-      return true;
+  deletePerson(id: number): Observable<boolean> {
+    if (this.authService.hasRole('delete')) {
+      const index = this.persons.findIndex(person => person.id === id);
+      if (index !== -1) {
+        this.persons.splice(index, 1);
+        return of(true);
+      }
+    } else {
+      alert('User not authorized');
     }
-    return false;
+    return of(false);
   }
 
   list(): Observable<Person[]> {
