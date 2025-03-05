@@ -21,8 +21,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NotificationComponent } from './components/notification/notification.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { WeatherService } from './services/weather.service';
+import { WeatherComponent } from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ModalComponent,
     CardComponent,
     LoginComponent,
+    WeatherComponent,
     NotificationComponent,
     GenderPipe,
     HoverHighlightDirective
@@ -43,6 +46,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     MatDialogModule, // for ModalComponent
     //The next three imports are for NgRx notifications
     StoreModule.forRoot({ notifications: notificationReducer }),
@@ -51,7 +55,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   providers: [
     PersonService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptor, 
+      multi: true 
+    },
+    WeatherService
   ],
   bootstrap: [AppComponent]
 })

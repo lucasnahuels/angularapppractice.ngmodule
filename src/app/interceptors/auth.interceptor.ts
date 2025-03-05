@@ -12,9 +12,10 @@ export class AuthInterceptor implements HttpInterceptor {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       const cloned = req.clone({
-        setHeaders: {
-          Authorization: `Bearer fake-jwt-token`
-        }
+        // If I set this header, the weather api will return a 401 
+        // setHeaders: {
+        //   Authorization: `Bearer fake-jwt-token`
+        // }
       });
       return next.handle(cloned);
     } else {
