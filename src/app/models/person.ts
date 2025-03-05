@@ -3,5 +3,5 @@ export interface Person {
     name: string;
     gender: string;
     age: number;
-    skills?: { name: string, hasSkill: boolean }[];
+    skills?: { name: string }[];
 }

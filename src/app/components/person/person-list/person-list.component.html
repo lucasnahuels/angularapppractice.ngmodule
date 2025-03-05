@@ -32,7 +32,7 @@
               <div class="person-column">{{ person.gender | gender }}</div>
               <div class="person-column">{{ person.age }}</div>
               <div class="person-column">
-                <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': skill.hasSkill ? 'green' : 'red', 'color': 'white'}">
+                <span *ngFor="let skill of person.skills" [ngStyle]="{'background-color': 'green', 'color': 'white'}">
                   {{ skill.name }}
                 <br />
                 </span>

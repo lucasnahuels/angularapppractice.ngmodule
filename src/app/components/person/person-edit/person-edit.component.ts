@@ -49,8 +49,17 @@ export class PersonEdit {
   }
 
   addSkill(personId: number): void {
+    if (this.newSkill.trim()) {
+      this.personService.addSkill(personId, this.newSkill).subscribe(person => {
+        this.personService.getPersonById(personId);
+        this.newSkill = '';
+      });
+    }
   }
 
-  deleteSkill(personId: number, skillId: number): void {
+  deleteSkill(personId: number, skillName: string): void {
+    this.personService.deleteSkill(personId, skillName).subscribe(() => {
+        this.personService.getPersonById(personId);
+    });
   }
 }

@@ -21,13 +21,13 @@
     <ul style="padding-left: 0">
       <li *ngFor="let skill of person.skills" style="display: flex; justify-content: space-between; width: 300px;">
         <span style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ skill.name }}</span>
-        <button (click)="deleteSkill(person.id, 0)" >
+        <button type="button" (click)="deleteSkill(person.id, skill.name)" >
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
       </li>
     </ul>
-    <input [(ngModel)]="newSkill" placeholder="New skill" />
-    <button (click)="addSkill(person.id)">Add Skill</button>
+    <input [(ngModel)]="newSkill" placeholder="New skill" name="newSkill"/>
+    <button type="button" (click)="addSkill(person.id)">Add Skill</button>
     <br />
     <br />
     <br />
